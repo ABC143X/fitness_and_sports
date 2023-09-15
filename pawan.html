@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mental Health Self-Assessment</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #007BFF;
+            color: #bc1f1f;
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1 {
+            margin-top: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        form label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        input[type="submit"] {
+            background-color: #007BFF;
+            color: #b91515;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #dce1e6;
+        }
+
+        #guidance {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Mental Health Self-Assessment</h1>
+    
+    <p>Please answer the following questions honestly to assess your mental health.</p>
+    
+    <form id="assessmentForm">
+        <label for="question1">1. Tell about your gender ?</label>
+        <select id="question1">
+            <option value="male">male</option>
+            <option value="female">female</option>
+        
+        </select>
+        
+        <label for="question2">2. What is your age?</label>
+        <select id="question2">
+            <option value="below 18">below 18</option>
+            <option value="above 18">above 18</option>
+        </select>
+        
+        <label for="question3">3. how do you feel nowdays?</label>
+        <select id="question3">
+            <option value="seek">seek</option>
+            <option value="good">good</option>
+            <option value="feel stressed">feel stressed</option>
+            
+        </select>
+
+        <label for="question4">4. is any change in your daily sleep routine?</label>
+        <select id="question4">
+            <option value="yes">yes</option>
+            <option value="no">no</option>
+          
+        <input type="submit" value="Submit">
+    </form>
+    
+    <div id="guidance"></div>
+    
+    <script>
+        document.getElementById('assessmentForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            
+            // Calculate a simple score based on user's answers
+            const question1Value = document.getElementById('question1').value;
+            const question2Value = document.getElementById('question2').value;
+            const question3Value = document.getElementById('question3').value;
+            const question4Value = document.getElementById('question4').value;
+            
+            let score = 0;
+            if (question1Value === 'often' || question1Value === 'always') {
+                score += 1;
+            }
+            if (question2Value === 'yes') {
+                score += 1;
+            }
+            if (question3Value === 'often' || question3Value === 'always') {
+                score += 1;
+            } 
+            if (question4Value === 'yes'   || question4Value === 'no') {
+                score += 1;
+            }
+            
+            // Provide guidance based on the score
+            let guidanceText = '';
+            if (score === 0) {
+                guidanceText = "you are healthy";
+            } else if (score === 1) {
+                guidanceText = "It's important to pay attention to your mental health. Consider talking to someone you trust about how you're feeling.";
+            } else if (score === 2) {
+                guidanceText = "Your responses indicate that you may be experiencing some mental health challenges. It's a good idea to seek help and talk to a mental health professional.";
+            } else if (score === 3) {
+                guidanceText = "Based on your responses, it's important to seek professional help for your mental health. Please reach out to a mental health specialist as soon as possible.";
+            } else if (score === 4) {
+                guidanceText = "Based on your responses, it's important to seek professional help for your mental health. Please reach out to a mental health specialist as soon as possible.";
+            }
+            
+            document.getElementById('guidance').textContent = guidanceText;
+        });
+    </script>
+</body>
+</html>
